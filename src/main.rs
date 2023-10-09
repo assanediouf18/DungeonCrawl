@@ -8,6 +8,7 @@ mod systems;
 mod prelude {
     pub use bracket_lib::prelude::*;
     pub use legion::*;
+    pub use crate::world::SubWorld;
     pub const SCREEN_WIDTH: i32 = 80;
     pub const SCREEN_HEIGHT: i32 = 50;
     pub const DISPLAY_WIDTH: i32 = SCREEN_WIDTH / 2;
@@ -68,6 +69,6 @@ impl GameState for State {
         ctx.cls();
         self.resources.insert(ctx.key);
         self.systems.execute(&mut self.ecs, &mut self.resources);
-        // TODO : Render Draw Buffer
+        render_draw_buffer(ctx).expect("Render error");
     }
 }
