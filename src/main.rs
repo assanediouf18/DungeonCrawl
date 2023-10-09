@@ -6,6 +6,7 @@ mod spawner;
 mod systems;
 
 mod prelude {
+    pub use std::cmp;
     pub use crate::world::SubWorld;
     pub use bracket_lib::prelude::*;
     pub use legion::*;

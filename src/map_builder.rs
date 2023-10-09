@@ -28,11 +28,13 @@ impl MapBuilder {
 
     fn build_random_rooms(&mut self, rng: &mut RandomNumberGenerator) {
         while self.rooms.len() < NUM_ROOMS {
+            let x = rng.range(0, SCREEN_WIDTH);
+            let y = rng.range(0, SCREEN_HEIGHT);
             let room = Rect::with_size(
-                rng.range(0, SCREEN_WIDTH),
-                rng.range(0, SCREEN_HEIGHT),
-                rng.range(2, 10),
-                rng.range(2, 10)
+                x,
+                y,
+                cmp::min(rng.range(2, 10), SCREEN_WIDTH - x),
+                cmp::min(rng.range(2, 10), SCREEN_HEIGHT - y)
             );
             let mut overlap = false;
             for r in self.rooms.iter() {
